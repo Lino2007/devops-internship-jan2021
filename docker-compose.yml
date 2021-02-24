@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+  db:
+    image: 'postgres:10'
+    container_name: psql_ms
+    network_mode: "host"
+    environment:
+      - POSTGRES_USER=demo
+      - POSTGRES_PASSWORD=demo
+
+  news_ms:
+    image: 'news_ms:latest'
+    network_mode: "host"
+    build:
+      context: ./news-application
+    container_name: news_ms_c
+    
+  website_ms:
+    image: 'website_ms:latest'
+    network_mode: "host"
+    build:
+      context: ./website-application
+    container_name: website_ms_c
+
+  admin_ms:
+    image: 'admin_ms:latest'
+    network_mode: "host"
+    build:
+      context: ./admin-application
+    container_name: admin_ms_c
+
+  biz_ms:
+    image: 'biz_ms:latest'
+    network_mode: "host"
+    build:
+      context: ./biz-application
+    container_name: biz_ms_c
+    
