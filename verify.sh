@@ -1,5 +1,5 @@
 #!/bin/bash
- 
+
 declare -a errMsg=("Admin-application returned error!" "News-application returned error!"
                    "Biz-application returned error!" "Website-application returned error!")
 declare -a okMsg=("Admin-application is running!" "News-application is running!"
