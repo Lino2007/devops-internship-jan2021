@@ -22,7 +22,7 @@ pipeline {
 
     stage("Push image to Dockerhub") {
         steps {
-             sh 'mvn test'
+             echo "maven"
             }
         }
     }
