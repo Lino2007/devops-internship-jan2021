@@ -1,7 +1,7 @@
-server.port: 9201
+server.port: 9101
 
 spring:
-  application.name: news-application
+  application.name: admin-application
   cloud.config:
     discovery.enabled: false
     fail-fast: false
@@ -21,7 +21,7 @@ feign.hystrix.enabled: true
 
 hazelcast.max.no.heartbeat.seconds: 60
 
-biz-application.url: http://biz-ms-c:9001
+biz-application.url: http://localhost:9001
 
 vaadin.urlMapping: /ui/*
 server.servlet.context-path: /
