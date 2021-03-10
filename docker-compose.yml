@@ -1,0 +1,50 @@
+version: '2'
+
+services:
+  db:
+    image: 'postgres:10'
+    container_name: psql-ms
+    ports:
+      - "5432:5432"
+    networks:
+        - net-demo
+    environment:
+      - POSTGRES_USER=demo
+      - POSTGRES_PASSWORD=demo
+
+  biz_ms:
+    image: 'usr998/atlant-devops:biz_ms'
+    ports:
+      - "9001:9001"
+    networks:
+        - net-demo
+    container_name: biz-ms-c
+    
+  admin_ms:
+    image: 'usr998/atlant-devops:admin_ms'
+    ports:
+      - "9101:9101"
+    networks:
+        - net-demo
+    container_name: admin-ms-c
+
+  news_ms:
+    image: 'usr998/atlant-devops:news_ms'
+    ports:
+      - "9201:9201"
+    networks:
+        - net-demo
+    container_name: news-ms-c
+    
+  website_ms:
+    image: 'usr998/atlant-devops:website_ms'
+    ports:
+      - "9301:9301"
+    networks:
+        - net-demo
+    container_name: website-ms-c
+
+networks:
+    net-demo:
+        driver: bridge
+
