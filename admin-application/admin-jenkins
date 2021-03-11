@@ -1,11 +1,4 @@
 pipeline {
-  environment {
-  tag = "admin_ms"
-  imageName = "usr998/atlant-devops:$tag"
-  reg = 'Dockerhub'
-  image = ''
-  }
-
   agent any
 
   stages {
