@@ -12,6 +12,7 @@ pipeline {
   
     stage("Maven build") {
 	    steps {
+	        cd $WORKSPACE
 			sh "mvn clean install -DskipTests"
 		}
     }
