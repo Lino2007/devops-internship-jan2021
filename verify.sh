@@ -26,7 +26,7 @@ done
 listen="$(netstat -tlpn | grep docker-proxy | grep 5432 | grep -c LISTEN)"
 container_up="$(docker ps | grep postgres:10 | grep -c Up)"
 
-if [ $listen -eq 2 -a $container_up -ne 0 ]
+if [ $listen -eq 1 -a $container_up -ne 0 ]
 then
     tput setaf 2; echo PostgreSQL database is running!
 else
@@ -45,3 +45,5 @@ else
 fi
 
 tput setaf 9;
+
+
