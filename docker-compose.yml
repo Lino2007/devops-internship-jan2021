@@ -3,37 +3,55 @@ version: '2'
 services:
   db:
     image: 'postgres:10'
-    container_name: psql_ms
-    network_mode: "host"
+    container_name: psql-ms
+    ports:
+      - "5432:5432"
+    networks:
+        - net-demo
     environment:
       - POSTGRES_USER=demo
       - POSTGRES_PASSWORD=demo
 
-  news_ms:
-    image: 'news_ms:latest'
-    network_mode: "host"
-    build:
-      context: ./news-application
-    container_name: news_ms_c
-    
-  website_ms:
-    image: 'website_ms:latest'
-    network_mode: "host"
-    build:
-      context: ./website-application
-    container_name: website_ms_c
-
-  admin_ms:
-    image: 'admin_ms:latest'
-    network_mode: "host"
-    build:
-      context: ./admin-application
-    container_name: admin_ms_c
-
-  biz_ms:
-    image: 'biz_ms:latest'
-    network_mode: "host"
+  biz-ms:
+    image: 'biz-ms:latest'
     build:
       context: ./biz-application
-    container_name: biz_ms_c
+    ports:
+      - "9001:9001"
+    networks:
+        - net-demo
+    container_name: biz-ms-c
     
+  admin-ms:
+    image: 'admin-ms:latest'
+    build:
+      context: ./admin-application
+    ports:
+      - "9101:9101"
+    networks:
+        - net-demo
+    container_name: admin-ms-c
+
+  news-ms:
+    image: 'news-ms:latest'
+    build:
+      context: ./news-application
+    ports:
+      - "9201:9201"
+    networks:
+        - net-demo
+    container_name: news-ms-c
+    
+  website-ms:
+    image: 'website-ms:latest'
+    build:
+      context: ./website-application
+    ports:
+      - "9301:9301"
+    networks:
+        - net-demo
+    container_name: website-ms-c
+
+networks:
+    net-demo:
+        driver: bridge

@@ -14,8 +14,8 @@ fi
 
 #building phase
 mvn clean install
-docker build -t admin_ms ./admin-application
-docker build -t biz_ms ./biz-application
-docker build -t news_ms ./news-application
-docker build -t website_ms ./website-application
+docker build -t admin-ms ./admin-application
+docker build -t biz-ms ./biz-application
+docker build -t news-ms ./news-application
+docker build -t website-ms ./website-application
 
