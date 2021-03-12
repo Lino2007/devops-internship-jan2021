@@ -1,43 +1,44 @@
 pipeline {
   environment {
-  tag = "website_ms" //
-  imageName = "usr998/atlant-devops:$tag"
-  reg = 'Dockerhub'
-  image = ''
+    tag = "website_ms" 
+    imageName = "usr998/atlant-devops:$tag"
+    reg = 'Dockerhub'
+    image = ''
   }
 
   agent any
 
   stages {
-  
-    stage("Maven build") {
-	    steps {
-				sh "cd ./website-application && mvn clean install"
-		}
+
+    stage("Maven build and test") {
+      steps {
+        sh "cd ./website-application && mvn clean install"
+      }
     }
-	
-	stage("Build website-ms image") { //
-		steps {
-			script {
-				image = docker.build(imageName, ".") //
-			}
-		}
-	}
-	
-    stage("Push image to Dockerhub") {
-        steps {
-            script {
-                    docker.withRegistry( '', reg ) {
-                    image.push('$tag')
-                }
-            }
+
+    stage("Build website-ms image") { 
+      steps {
+        script {
+          image = docker.build(imageName, "./website-application") 
         }
+      }
+    }
+
+    stage("Push image to Dockerhub") {
+      steps {
+        script {
+          docker.withRegistry('', reg) {
+            image.push('$tag')
+          }
+        }
+      }
     }
   }
 
   post {
     always {
       sh "yes | docker image prune"
+      cleanWs()
     }
   }
 }
