@@ -1,0 +1,44 @@
+pipeline {
+  environment {
+    tag = "news-ms"
+    imageName = "usr998/atlant-devops:$tag"
+    reg = 'Dockerhub'
+    image = ''
+  }
+
+  agent any
+
+  stages {
+
+    stage("Maven build and test") {
+      steps {
+        sh "cd ./news-application && mvn clean install"
+      }
+    }
+
+    stage("Build news-ms image") {
+      steps {
+        script {
+          image = docker.build(imageName, "./news-application")
+        }
+      }
+    }
+
+    stage("Push image to Dockerhub") {
+      steps {
+        script {
+          docker.withRegistry('', reg) {
+            image.push('$tag')
+          }
+        }
+      }
+    }
+  }
+
+  post {
+    always {
+      sh "yes | docker image prune"
+      cleanWs()
+    }
+  }
+}

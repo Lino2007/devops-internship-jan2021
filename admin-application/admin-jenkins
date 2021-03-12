@@ -1,0 +1,42 @@
+pipeline {
+  environment {
+    tag = "admin-ms"
+    imageName = "usr998/atlant-devops:$tag"
+    reg = 'Dockerhub'
+    image = ''
+  }
+  agent any
+
+  stages {
+    stage("Maven build and test") {
+      steps {
+        sh "cd ./admin-application && mvn clean install"
+      }
+    }
+
+    stage("Build admin-ms image") {
+      steps {
+        script {
+          image = docker.build(imageName, "./admin-application")
+        }
+      }
+    }
+
+    stage("Push image to Dockerhub") {
+      steps {
+        script {
+          docker.withRegistry('', reg) {
+            image.push('$tag')
+          }
+        }
+      }
+    }
+  }
+
+  post {
+    always {
+      sh "yes | docker image prune"
+      cleanWs()
+    }
+  }
+}

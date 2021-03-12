@@ -12,40 +12,32 @@ services:
       - POSTGRES_USER=demo
       - POSTGRES_PASSWORD=demo
 
-  biz-ms:
-    image: 'biz-ms:latest'
-    build:
-      context: ./biz-application
+  biz_ms:
+    image: 'usr998/atlant-devops:biz-ms'
     ports:
       - "9001:9001"
     networks:
         - net-demo
     container_name: biz-ms-c
     
-  admin-ms:
-    image: 'admin-ms:latest'
-    build:
-      context: ./admin-application
+  admin_ms:
+    image: 'usr998/atlant-devops:admin-ms'
     ports:
       - "9101:9101"
     networks:
         - net-demo
     container_name: admin-ms-c
 
-  news-ms:
-    image: 'news-ms:latest'
-    build:
-      context: ./news-application
+  news_ms:
+    image: 'usr998/atlant-devops:news-ms'
     ports:
       - "9201:9201"
     networks:
         - net-demo
     container_name: news-ms-c
     
-  website-ms:
-    image: 'website-ms:latest'
-    build:
-      context: ./website-application
+  website_ms:
+    image: 'usr998/atlant-devops:website-ms'
     ports:
       - "9301:9301"
     networks:
@@ -55,3 +47,4 @@ services:
 networks:
     net-demo:
         driver: bridge
+
