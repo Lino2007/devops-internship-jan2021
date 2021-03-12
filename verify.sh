@@ -23,7 +23,7 @@ do
 done
 
 #database container check
-listen="$(netstat -tlpn | grep postgres | grep 5432 | grep -c LISTEN)"
+listen="$(netstat -tlpn | grep docker-proxy | grep 5432 | grep -c LISTEN)"
 container_up="$(docker ps | grep postgres:10 | grep -c Up)"
 
 if [ $listen -eq 2 -a $container_up -ne 0 ]
