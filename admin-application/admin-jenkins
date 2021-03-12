@@ -1,18 +1,17 @@
 pipeline {
-  environment {
-  tag = "admin_ms"
-  imageName = "usr998/atlant-devops:$tag"
-  reg = 'Dockerhub'
-  image = ''
+   environment {
+         tag = "admin_ms" //
+         imageName = "usr998/atlant-devops:$tag"
+         reg = 'Dockerhub'
+         image = ''
   }
-
   agent any
 
   stages {
-  
-    stage("Maven build") {
+         stage("Maven build") {
 	    steps {
-			sh "mvn clean install -DskipTests"
+	        
+			sh "cd ./admin-application && mvn clean install -DskipTests && cd .."
 		}
     }
 	
