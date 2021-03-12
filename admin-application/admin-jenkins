@@ -8,17 +8,16 @@ pipeline {
   agent any
 
   stages {
-         stage("Maven build") {
+         stage("Maven build and test") {
 	    steps {
-	        
-			sh "cd ./admin-application && mvn clean install -DskipTests && cd .."
+	        sh "cd ./admin-application && mvn clean install"
 		}
     }
 	
 	stage("Build admin-ms image") {
 		steps {
 			script {
-				image = docker.build(imageName, "./admin-application")
+				image = docker.build(imageName, ".")
 			}
 		}
 	}
@@ -37,6 +36,7 @@ pipeline {
   post {
     always {
       sh "yes | docker image prune"
+      cleanWs()
     }
   }
 }

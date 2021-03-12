@@ -12,14 +12,14 @@ pipeline {
   
     stage("Maven build") {
 	    steps {
-            sh "cd ./news-application && mvn clean install -DskipTests && cd .."
+            sh "cd ./news-application && mvn clean install"
 		}
     }
 	
 	stage("Build news-ms image") { //
 		steps {
 			script {
-				image = docker.build(imageName, "./news-application") //
+				image = docker.build(imageName, ".") //
 			}
 		}
 	}
