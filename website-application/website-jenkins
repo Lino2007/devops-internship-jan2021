@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    tag = "website_ms" 
+    tag = "website-ms" 
     imageName = "usr998/atlant-devops:$tag"
     reg = 'Dockerhub'
     image = ''

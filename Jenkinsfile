@@ -12,10 +12,10 @@ pipeline {
     
     stage("Prepare and build ms") {
       steps {
-        build job: 'biz_ms'
-        build job: 'admin_ms'
-        build job: 'news_ms'
-        build job: 'website_ms'
+        build job: 'biz-ms'
+        build job: 'admin-ms'
+        build job: 'news-ms'
+        build job: 'website-ms'
       }
     }
 

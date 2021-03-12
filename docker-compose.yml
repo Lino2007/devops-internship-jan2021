@@ -13,7 +13,7 @@ services:
       - POSTGRES_PASSWORD=demo
 
   biz_ms:
-    image: 'usr998/atlant-devops:biz_ms'
+    image: 'usr998/atlant-devops:biz-ms'
     ports:
       - "9001:9001"
     networks:
@@ -21,7 +21,7 @@ services:
     container_name: biz-ms-c
     
   admin_ms:
-    image: 'usr998/atlant-devops:admin_ms'
+    image: 'usr998/atlant-devops:admin-ms'
     ports:
       - "9101:9101"
     networks:
@@ -29,7 +29,7 @@ services:
     container_name: admin-ms-c
 
   news_ms:
-    image: 'usr998/atlant-devops:news_ms'
+    image: 'usr998/atlant-devops:news-ms'
     ports:
       - "9201:9201"
     networks:
@@ -37,7 +37,7 @@ services:
     container_name: news-ms-c
     
   website_ms:
-    image: 'usr998/atlant-devops:website_ms'
+    image: 'usr998/atlant-devops:website-ms'
     ports:
       - "9301:9301"
     networks:
