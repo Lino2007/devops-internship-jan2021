@@ -3,7 +3,13 @@ pipeline {
   agent any
 
   stages {
-
+    stage("Terminate old containers") {
+      steps {
+        sh 'docker-compose down || true'
+      }
+    }
+    
+    
     stage("Prepare and build ms") {
       steps {
         build job: 'biz_ms'
