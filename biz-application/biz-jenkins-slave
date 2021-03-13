@@ -6,7 +6,7 @@ pipeline {
     image = ''
   }
 
-  agent any
+  agent { label 'Jenkins_Slave' }
 
 
   stages {
