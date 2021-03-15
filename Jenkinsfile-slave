@@ -1,6 +1,6 @@
 pipeline {
 
-  agent { label 'Jenkins_Slave' }
+  agent { label 'Jenkins_Slave' } 
 
   stages {
     stage("Terminate old containers") {
