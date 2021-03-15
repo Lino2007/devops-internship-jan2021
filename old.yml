@@ -1,6 +1,6 @@
 version: '2'
 
-services:   
+services:    
   db:
     image: 'postgres:10'
     container_name: psql-ms
