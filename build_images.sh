@@ -3,7 +3,7 @@
 if [ "$EUID" -ne 0 ]
   then echo "Please, run this script as root!"
   exit
-fi
+fi  
 
 d="$(pwd | grep -c devops-internship)"
 if [ $d -eq 0 ]
