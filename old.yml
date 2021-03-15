@@ -13,7 +13,7 @@ services:
       - POSTGRES_PASSWORD=demo
 
   biz-ms:
-    image: 'biz-ms:latest'
+    image: 'biz-ms:latest'  
     build:
       context: ./biz-application
     ports:
