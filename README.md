@@ -1,4 +1,4 @@
-# Microservices with Vaadin demo application test
+# Microservices with Vaadin demo application
 
 ## Build the app
 
