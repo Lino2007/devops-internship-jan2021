@@ -3,13 +3,7 @@ pipeline {
   agent { label 'Jenkins_Slave' } 
 
   stages {
-    stage("GitSCM checkout") {
-      steps {
-        checkout scm
-      }
-    }
-  
-    stage("Terminate old containers") {
+   stage("Terminate old containers") {
       steps {
         sh 'docker-compose down || true'
       }
