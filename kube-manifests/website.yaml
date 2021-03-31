@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: website-ms-c
+  name: website-ms-c
+spec:
+  type: NodePort
+  ports:
+    - name: "9301"
+      port: 9301
+      targetPort: 9301
+  selector:
+    app: website-ms-c
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: website-ms-c
+  name: website-ms-c
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: website-ms-c
+  template:
+    metadata:
+      labels:
+        app: website-ms-c
+    spec:
+      containers:
+        - image: usr998/atlant-devops:website-ms
+          name: website-ms-c
+          ports:
+            - containerPort: 9301
+          resources: {}
+      restartPolicy: Always
+
