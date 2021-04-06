@@ -10,9 +10,8 @@ eureka.client:
 
 hazelcast.max.no.heartbeat.seconds: 60
 
-admin-application.url: http://ec2-52-59-214-233.eu-central-1.compute.amazonaws.com:9101/ui/
-
-news-application.url: http://ec2-52-59-214-233.eu-central-1.compute.amazonaws.com:9201/ui/
+admin-application.url: http://192.168.49.2:30011/ui/
+news-application.url: http://192.168.49.2:30021/ui/
 
 vaadin.urlMapping: /ui/*
 server.servlet.context-path: /
