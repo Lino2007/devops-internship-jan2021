@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: psql-ms
+  name: psql-ms
+spec:
+  ports:
+    - name: "5432"
+      port: 5432
+      targetPort: 5432
+  selector:
+    app: psql-ms
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: psql-ms
+  name: psql-ms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: psql-ms
+  template:
+    metadata:
+      labels:
+        app: psql-ms
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_PASSWORD
+              value: demo
+            - name: POSTGRES_USER
+              value: demo
+          image: postgres:10
+          name: psql-ms
+          ports:
+            - containerPort: 5432
+          resources: {}
+      restartPolicy: Always
+

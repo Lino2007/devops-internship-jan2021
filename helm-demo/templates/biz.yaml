@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: biz-ms-c
+  name: biz-ms-c
+spec:
+  ports:
+    - name: "9001"
+      port: 9001
+      targetPort: 9001
+  selector:
+    app: biz-ms-c
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: biz-ms-c
+  name: biz-ms-c
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: biz-ms-c
+  template:
+    metadata:
+      labels:
+        app: biz-ms-c
+    spec:
+      containers:
+        - image: usr998/atlant-devops:biz-ms
+          name: biz-ms-c
+          ports:
+            - containerPort: 9001
+          resources: {}
+      restartPolicy: Always
+

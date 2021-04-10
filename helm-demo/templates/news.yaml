@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: news-ms-c
+  name: news-ms-c
+spec:
+  type: NodePort
+  ports:
+    - name: "9201"
+      port: 9201
+      targetPort: 9201
+      nodePort: 30021
+  selector:
+    app: news-ms-c
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: news-ms-c
+  name: news-ms-c
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: news-ms-c
+  template:
+    metadata:
+      labels:
+        app: news-ms-c
+    spec:
+      containers:
+        - image: usr998/atlant-devops:news-ms
+          name: news-ms-c
+          ports:
+            - containerPort: 9201
+          resources: {}
+      restartPolicy: Always
+
+
