@@ -2,17 +2,17 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: news-ms-c
-  name: news-ms-c
+    app: {{ .Values.ms.names.news }}
+  name: {{ .Values.ms.names.news }}
 spec:
-  type: NodePort
+  type: {{ .Values.ms.serviceTypes.news }}
   ports:
     - name: "9201"
-      port: 9201
-      targetPort: 9201
-      nodePort: 30021
+      port: {{ .Values.ms.ports.news }}
+      targetPort: {{ .Values.ms.targetPorts.news }}
+      nodePort: {{ .Values.ms.nodePorts.news }}
   selector:
-    app: news-ms-c
+    app: {{ .Values.ms.names.news }}
 
 ---
 
@@ -20,23 +20,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: news-ms-c
-  name: news-ms-c
+    app: {{ .Values.ms.names.news }}
+  name: {{ .Values.ms.names.news }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.ms.replicas.news }}
   selector:
     matchLabels:
-      app: news-ms-c
+      app: {{ .Values.ms.names.news }}
   template:
     metadata:
       labels:
-        app: news-ms-c
+        app: {{ .Values.ms.names.news }}
     spec:
       containers:
-        - image: usr998/atlant-devops:news-ms
-          name: news-ms-c
+        - image: {{ .Values.ms.images.news }}
+          name: {{ .Values.ms.names.news }}
           ports:
-            - containerPort: 9201
+            - containerPort: {{ .Values.ms.ports.news }}
           resources: {}
       restartPolicy: Always
 

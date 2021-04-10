@@ -39,7 +39,7 @@ ms:
     news: NodePort
     website: NodePort
 
-database:
+db:
   name: psql-ms
   image: postgres:10
   port: 5432

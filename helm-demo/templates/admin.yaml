@@ -33,7 +33,7 @@ spec:
         app: {{ .Values.ms.names.admin }}
     spec:
       containers:
-        - image: usr998/atlant-devops:admin-ms
+        - image: {{ .Values.ms.images.admin }}
           name: {{ .Values.ms.names.admin }}
           ports:
             - containerPort: {{ .Values.ms.ports.admin }}

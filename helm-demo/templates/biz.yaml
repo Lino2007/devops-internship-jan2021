@@ -2,15 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: biz-ms-c
-  name: biz-ms-c
+    app: {{ .Values.ms.names.biz }}
+  name: {{ .Values.ms.names.biz }}
 spec:
   ports:
     - name: "9001"
-      port: 9001
-      targetPort: 9001
+      port: {{ .Values.ms.ports.biz }}
+      targetPort: {{ .Values.ms.targetPorts.biz }}
   selector:
-    app: biz-ms-c
+    app: {{ .Values.ms.names.biz }}
 
 ---
 
@@ -18,23 +18,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: biz-ms-c
-  name: biz-ms-c
+    app: {{ .Values.ms.names.biz }}
+  name: {{ .Values.ms.names.biz }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.ms.replicas.biz }}
   selector:
     matchLabels:
-      app: biz-ms-c
+      app: {{ .Values.ms.names.biz }}
   template:
     metadata:
       labels:
-        app: biz-ms-c
+        app: {{ .Values.ms.names.biz }}
     spec:
       containers:
-        - image: usr998/atlant-devops:biz-ms
-          name: biz-ms-c
+        - image: {{ .Values.ms.images.biz }}
+          name: {{ .Values.ms.names.biz }}
           ports:
-            - containerPort: 9001
+            - containerPort: {{ .Values.ms.ports.biz }}
           resources: {}
       restartPolicy: Always
 

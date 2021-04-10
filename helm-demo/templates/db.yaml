@@ -2,15 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: psql-ms
-  name: psql-ms
+    app: {{ .Values.db.name }}
+  name: {{ .Values.db.name }}
 spec:
   ports:
     - name: "5432"
-      port: 5432
-      targetPort: 5432
+      port: {{ .Values.db.port }}
+      targetPort: {{ .Values.db.targetPort }}
   selector:
-    app: psql-ms
+    app: {{ .Values.db.name }}
 
 ---
 
@@ -18,28 +18,28 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: psql-ms
-  name: psql-ms
+    app: {{ .Values.db.name }}
+  name: {{ .Values.db.name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.db.replicas }}
   selector:
     matchLabels:
-      app: psql-ms
+      app: {{ .Values.db.name }}
   template:
     metadata:
       labels:
-        app: psql-ms
+        app: {{ .Values.db.name }}
     spec:
       containers:
         - env:
             - name: POSTGRES_PASSWORD
-              value: demo
+              value: {{ .Values.db.env.pgPassword }}
             - name: POSTGRES_USER
-              value: demo
-          image: postgres:10
-          name: psql-ms
+              value: {{ .Values.db.env.pgUser }}
+          image: {{ .Values.db.image }}
+          name: {{ .Values.db.name }}
           ports:
-            - containerPort: 5432
+            - containerPort: {{ .Values.db.port }}
           resources: {}
       restartPolicy: Always
 

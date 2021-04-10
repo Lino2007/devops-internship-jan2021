@@ -2,17 +2,17 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: website-ms-c
-  name: website-ms-c
+    app: {{ .Values.ms.names.website }}
+  name: {{ .Values.ms.names.website }}
 spec:
-  type: NodePort
+  type: {{ .Values.ms.serviceTypes.website }}
   ports:
     - name: "9301"
-      port: 9301
-      targetPort: 9301
-      nodePort: 30031
+      port: {{ .Values.ms.ports.website }}
+      targetPort: {{ .Values.ms.targetPorts.website }}
+      nodePort: {{ .Values.ms.nodePorts.website }}
   selector:
-    app: website-ms-c
+    app: {{ .Values.ms.names.website }}
 
 ---
 
@@ -20,23 +20,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: website-ms-c
-  name: website-ms-c
+    app: {{ .Values.ms.names.website }}
+  name: {{ .Values.ms.names.website }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.ms.replicas.website }}
   selector:
     matchLabels:
-      app: website-ms-c
+      app: {{ .Values.ms.names.website }}
   template:
     metadata:
       labels:
-        app: website-ms-c
+        app: {{ .Values.ms.names.website }}
     spec:
       containers:
-        - image: usr998/atlant-devops:website-ms-kube
-          name: website-ms-c
+        - image: {{ .Values.ms.images.website }}
+          name: {{ .Values.ms.names.website }}
           ports:
-            - containerPort: 9301
+            - containerPort: {{ .Values.ms.ports.website }}
           resources: {}
       restartPolicy: Always
 
