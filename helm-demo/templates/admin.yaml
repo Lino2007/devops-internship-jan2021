@@ -2,17 +2,17 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: admin-ms-c
-  name: admin-ms-c
+    app: {{ .Values.ms.names.admin }}
+  name: {{ .Values.ms.names.admin }}
 spec:
-  type: NodePort
+  type: {{ .Values.ms.serviceTypes.admin }}
   ports:
     - name: "9101"
-      port: 9101
-      targetPort: 9101
-      nodePort: 30011
+      port: {{ .Values.ms.ports.admin }}
+      targetPort: {{ .Values.ms.targetPorts.admin }}
+      nodePort: {{ .Values.ms.nodePorts.admin }}
   selector:
-    app: admin-ms-c
+    app: {{ .Values.ms.names.admin }}
 
 ---
 
@@ -20,23 +20,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: admin-ms-c
-  name: admin-ms-c
+    app: {{ .Values.ms.names.admin }}
+  name: {{ .Values.ms.names.admin }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.ms.replicas.admin }}
   selector:
     matchLabels:
-      app: admin-ms-c
+      app: {{ .Values.ms.names.admin }}
   template:
     metadata:
       labels:
-        app: admin-ms-c
+        app: {{ .Values.ms.names.admin }}
     spec:
       containers:
         - image: usr998/atlant-devops:admin-ms
-          name: admin-ms-c
+          name: {{ .Values.ms.names.admin }}
           ports:
-            - containerPort: 9101
+            - containerPort: {{ .Values.ms.ports.admin }}
           resources: {}
       restartPolicy: Always
 
