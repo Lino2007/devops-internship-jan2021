@@ -21,7 +21,7 @@ feign.hystrix.enabled: true
 
 hazelcast.max.no.heartbeat.seconds: 60
 
-biz-application.url: http://biza-ms-c:9001
+biz-application.url: http://biz-ms-c:9001
 
 vaadin.urlMapping: /ui/*
 server.servlet.context-path: /
