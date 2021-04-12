@@ -10,8 +10,8 @@ eureka.client:
 
 hazelcast.max.no.heartbeat.seconds: 60
 
-admin-application.url: http://192.168.49.2:30011/ui/
-news-application.url: http://192.168.49.2:30021/ui/
+admin-application.url: http://admin.abhapp.com/ui/
+news-application.url: http://news.abhapp.com/ui/
 
 vaadin.urlMapping: /ui/*
 server.servlet.context-path: /
