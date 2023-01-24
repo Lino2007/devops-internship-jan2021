@@ -1,6 +1,6 @@
 # Microservices with Vaadin demo application
 
-## Internship documentation
+## Internship documentation :page_facing_up:
 Details how internship tasks were completed and tools analysis is available in a following document:
 https://docs.google.com/document/d/1OmFasX5rIP1Khri2drhWMflY3niwNaU2KiyNq3imsro/edit?usp=sharing
 
